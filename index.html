@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dvir Hochman | Coffee Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --espresso: #2C1810;
+            --cream: #FDF6EC;
+            --caramel: #C8956C;
+            --latte: #E8D5B7;
+            --dark: #1A0F0A;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--espresso);
+            overflow-x: hidden;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--espresso) 50%, #4A2C20 100%);
+            color: var(--cream);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(200, 149, 108, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 70%, rgba(200, 149, 108, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .coffee-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: steam 3s ease-in-out infinite;
+        }
+
+        @keyframes steam {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 300;
+            color: var(--caramel);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--latte);
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.5rem;
+            border: 2px solid var(--caramel);
+            color: var(--caramel);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+        }
+
+        .btn:hover {
+            background: var(--caramel);
+            color: var(--dark);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s ease-in-out infinite;
+            color: var(--caramel);
+            opacity: 0.6;
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* About */
+        .about {
+            padding: 6rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--caramel);
+            margin-bottom: 1rem;
+        }
+
+        .about h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .about p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #5C4033;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 2rem 6rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(44, 24, 16, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(44, 24, 16, 0.1);
+        }
+
+        .feature-card .icon {
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #7A6055;
+            font-weight: 300;
+        }
+
+        /* CTA */
+        .cta {
+            background: var(--espresso);
+            color: var(--cream);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--latte);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .cta .btn { border-color: var(--latte); color: var(--latte); }
+        .cta .btn:hover { background: var(--latte); color: var(--dark); }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input {
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            border: 2px solid rgba(232, 213, 183, 0.3);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--latte);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input::placeholder {
+            color: rgba(232, 213, 183, 0.5);
+        }
+
+        .contact-form input:focus {
+            border-color: var(--caramel);
+        }
+
+        .contact-form button {
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--latte);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+        }
+
+        footer span { color: var(--caramel); }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="coffee-icon">&#9749;</div>
+            <h1>Dvir Hochman</h1>
+            <p class="tagline">Mobile Coffee Cart</p>
+            <p>Bringing freshly brewed, specialty-grade coffee straight to you. Crafted with passion, served with a smile &mdash; one cup at a time.</p>
+            <a href="#about" class="btn">Learn More</a>
+        </div>
+        <div class="scroll-hint">&#8595;</div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-label">About</div>
+        <h2>Coffee with Character</h2>
+        <p>I'm Dvir, and I believe great coffee shouldn't be confined to four walls. My mobile coffee cart brings the full caf&eacute; experience to your events, offices, and neighborhoods &mdash; using ethically sourced beans and expert technique to craft every drink just right.</p>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">&#127793;</div>
+                <h3>Fresh Beans</h3>
+                <p>Ethically sourced, locally roasted specialty beans for a cup that tastes as good as it feels.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#128205;</div>
+                <h3>Mobile & Flexible</h3>
+                <p>From corporate events to weekend markets &mdash; I bring the full coffee experience to wherever you need it.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#10024;</div>
+                <h3>Crafted With Care</h3>
+                <p>Every espresso pulled and every latte poured with attention to detail and genuine passion.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <h2>Book the Cart</h2>
+        <p>Leave your details and I'll get back to you!</p>
+        <form class="contact-form" id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <button type="submit" class="btn">Send via WhatsApp</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var name = this.name.value.trim();
+            var phone = this.phone.value.trim();
+            var message = 'Hi, I\'m ' + name + '. Phone: ' + phone + '.';
+            var waURL = 'https://wa.me/972543321921?text=' + encodeURIComponent(message);
+            window.open(waURL, '_blank');
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2026 Dvir Hochman <span>&bull;</span> Coffee Cart</p>
+    </footer>
+
+</body>
+</html>
